@@ -1,17 +1,26 @@
 #!/bin/bash
 
-disown %%
-
-if (( $# != 1 )); 
+if (( $# != 1 && $# != 2 )); 
 then
-   	echo You must input an integer as the only argument
+   	echo You must input must have either one or two integers as arguments.
 else
 	if [[ $1 =~ ^-?[0-9]+$ ]]; 
 	then
+		if (( $# == 2 ));
+        	then
+                	if [[ $2 =~ ^-?[0-9]+$ ]];
+                	then
+                        	length=$2
+                	else
+                        	length=20
+                	fi
+        	else
+                	length=20
+        	fi
+
 		for((i = 0; i < $1; i++)) do 
 			if [[ `adb devices|grep emulator` != "" ]]; 
    			then
-				length = 20
 				i=$(($length-1))
 				sleep $(($length*60))
 				adb -e emu kill
@@ -21,6 +30,6 @@ else
 	
 		done
 	else
-		echo You must input an integer as the only argument
+		echo You must input must have either one or two integers as arguments.
 	fi
 fi
