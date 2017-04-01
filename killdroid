@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function terminatePreviousInstances()
+{
+	IFS='
+' read -r -a array <<< `pgrep -f killdroid`
+
+	echo Parsed
+	
+	for item in "${array[@]}"
+	do
+		if (( "$$" != "$item" ));
+		then
+			echo $item
+		fi
+	done
+
+	echo Out
+}
+
 if (( $# != 1 && $# != 2 )); 
 then
    	echo You must input must have either one or two integers as arguments.
@@ -17,6 +35,10 @@ else
         	else
                 	length=20
         	fi
+		
+		#terminatePreviousInstances
+		
+		pkill -f killdroid
 
 		for((i = 0; i < $1; i++)) do 
 			if [[ `adb devices|grep emulator` != "" ]]; 
