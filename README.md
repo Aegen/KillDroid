@@ -14,7 +14,8 @@ Has only been tested on a mac.
 
 ### How to Run
 
-There are two ways to run killdroid
+There are two ways to run killdroid:
+
 ./killdroid <x:integer> - monitors for emulators for x minutes and kills the emulator after 20 minutes (example: ./killdroid 30 will monitor for 30 minutes)
 
 ./killdroid <x:integer> <y:integer> - monitors for emulators for x minutes and kills the emulator after y minutes (example: ./killdroid 30 15 will monitor for 30 minutes and kill the emulator after 15 minutes)
